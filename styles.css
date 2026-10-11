@@ -147,3 +147,21 @@
 @media(max-width:760px){.menu-footer{grid-template-columns:1fr;min-height:0;margin-top:63px;box-shadow:7px 7px 0 #070906}.menu-cta-copy{padding:35px 26px 31px}.menu-cta-copy h3{font-size:clamp(59px,11vw,84px)}.menu-cta-visual{min-height:240px;height:240px}.menu-cta-visual img{object-position:center 40%}.live-intro h2{font-size:clamp(68px,11.6vw,105px)}.map-wrap{height:420px}.map-location{max-width:calc(100% - 36px)}}
 @media(max-width:480px){.menu-cta-copy{padding:29px 22px 30px}.menu-cta-copy h3{font-size:clamp(53px,14vw,68px);margin:19px 0}.mobile-break{display:block}.menu-cta-copy>span{font-size:12px}.menu-cta-button{width:100%;min-width:0;font-size:15px}.menu-cta-visual{height:210px;min-height:210px}.live-intro h2{font-size:clamp(53px,16.2vw,78px)}.map-location{bottom:12px;left:12px;right:12px;max-width:calc(100% - 24px);padding:15px}.map-location strong{font-size:33px}.map-location a{font-size:10px}.map-wrap{height:410px}}
 @media(prefers-reduced-motion:reduce){.menu-cta-visual img,.menu-cta-button,.map-image-link img{transition:none}}
+
+/* Instagram access and five-second announcement. */
+.instagram-header{height:49px;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:5px 13px 5px 5px;border:1px solid #626b4e;background:#161912;color:#f2f0df;font:900 14px var(--display);letter-spacing:.08em;transition:transform .2s,border-color .2s}
+.instagram-header img{width:37px;height:37px;flex:none}
+.instagram-header:hover{transform:translateY(-2px);border-color:var(--acid)}
+.instagram-popup[hidden]{display:none!important}
+.instagram-popup{position:fixed;z-index:1000;inset:0;display:grid;place-items:center;padding:24px;background:rgba(3,5,2,.85);backdrop-filter:blur(8px);animation:instagram-fade .3s ease both}
+.instagram-popup-panel{position:relative;width:min(480px,60dvh,calc(100vw - 32px));aspect-ratio:2/3;box-shadow:0 28px 80px #000b;animation:instagram-pop .4s cubic-bezier(.2,.8,.2,1) both}
+.instagram-popup-image,.instagram-popup-image img{display:block;width:100%;height:100%}
+.instagram-popup-image img{object-fit:contain;background:#080905}
+.instagram-popup-close{position:absolute;z-index:2;top:-14px;right:-14px;display:grid;place-items:center;width:44px;height:44px;border:2px solid #10140b;border-radius:50%;background:var(--acid);color:#11140a;font:500 32px/1 var(--body);box-shadow:0 5px 16px #0009;transition:transform .2s,background .2s}
+.instagram-popup-close:hover{transform:rotate(90deg);background:#fff}
+body.instagram-popup-open{overflow:hidden}
+@keyframes instagram-fade{from{opacity:0}to{opacity:1}}
+@keyframes instagram-pop{from{opacity:0;transform:translateY(24px) scale(.96)}to{opacity:1;transform:none}}
+@media(max-width:1050px){.instagram-header span{display:none}.instagram-header{padding:5px;width:49px}}
+@media(max-width:760px){.instagram-header{height:42px;width:42px;padding:3px;margin-left:auto;margin-right:12px}.instagram-header img{width:34px;height:34px}.instagram-popup-close{top:-9px;right:-9px;width:40px;height:40px;font-size:29px}}
+@media(prefers-reduced-motion:reduce){.instagram-popup,.instagram-popup-panel{animation:none}.instagram-header,.instagram-popup-close{transition:none}}

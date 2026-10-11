@@ -59,3 +59,47 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
 }
 
 document.querySelector('#year').textContent = new Date().getFullYear();
+
+const instagramPopup = document.querySelector('#instagram-popup');
+const instagramPopupClose = instagramPopup.querySelector('.instagram-popup-close');
+const instagramPopupLink = instagramPopup.querySelector('.instagram-popup-image');
+let focusBeforeInstagramPopup = null;
+
+function closeInstagramPopup() {
+  if (instagramPopup.hidden) return;
+  instagramPopup.hidden = true;
+  document.body.classList.remove('instagram-popup-open');
+  if (focusBeforeInstagramPopup instanceof HTMLElement) focusBeforeInstagramPopup.focus({ preventScroll: true });
+}
+
+function openInstagramPopup() {
+  if (!instagramPopup.hidden) return;
+  focusBeforeInstagramPopup = document.activeElement;
+  instagramPopup.hidden = false;
+  document.body.classList.add('instagram-popup-open');
+  instagramPopupClose.focus({ preventScroll: true });
+}
+
+instagramPopupClose.addEventListener('click', closeInstagramPopup);
+instagramPopupLink.addEventListener('click', closeInstagramPopup);
+instagramPopup.addEventListener('click', event => {
+  if (event.target === instagramPopup) closeInstagramPopup();
+});
+document.addEventListener('keydown', event => {
+  if (instagramPopup.hidden) return;
+  if (event.key === 'Escape') closeInstagramPopup();
+  if (event.key !== 'Tab') return;
+  if (event.shiftKey && document.activeElement === instagramPopupClose) {
+    event.preventDefault();
+    instagramPopupLink.focus();
+  } else if (!event.shiftKey && document.activeElement === instagramPopupLink) {
+    event.preventDefault();
+    instagramPopupClose.focus();
+  }
+});
+
+if (document.readyState === 'complete') {
+  window.setTimeout(openInstagramPopup, 5000);
+} else {
+  window.addEventListener('load', () => window.setTimeout(openInstagramPopup, 5000), { once: true });
+}
